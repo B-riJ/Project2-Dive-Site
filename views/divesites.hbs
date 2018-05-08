@@ -11,16 +11,12 @@ router.get('/divesites', function (req, res) {
   })
   .catch(theError => { console.log(theError) })
 }) --}}
-{{!-- {{#each theList}}
-    <p>Dive Site:{{this.title}}</p>
-    <p>Longitude:{{this.longitude}}</p>
-    <p>Latitude:{{this.latitude}}</p>
-    <p>Wreck:{{this.wreck}}</p>
-    <p>Description:{{this.description}}</p>
-    <p>Depth:{{this.depth}}</p>
-    <p>Charter:{{this.charter}}</p>
-    <br> --}}
+{{#each theList}}
+<a href="/divesites/{{this._id}}">{{this.title}}</a>
+    
+  
+    <br>
 
     {{!-- Sorts the results by Keys:value. 
     This. ->theList-> divesites --}}
-{{!-- {{/each}} --}}
+{{/each}}

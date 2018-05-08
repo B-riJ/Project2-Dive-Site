@@ -1,0 +1,34 @@
+{{!-- Form created for edit clicked-on divesites --}}
+<h1>{{title}}</h1>
+<p>Your local dive site catalogue!{{title}}</p> 
+
+<!-- Simple form which will send a POST request -->
+<form action="/divesites/edit" method="post">
+
+  <p>Dive Site Name</p>
+  <input type="text" name="site" value={{divesite.title}}>
+
+  <p>Location - Longitude</p>
+  <input type="text" name="longitude" value={{divesite.longitude}}>
+
+  <p>Location - Latitude</p>
+  <input type="text" name="latitude" value={{divesite.latitude}}>
+
+  <p>Wreck Siting</p>
+  <input type="text" name="wreck" value={{divesite.wreck}}>
+
+  <p>Description of site</p>
+  <input type="text" name="description" value={{divesite.description}}>
+
+   <p>Depth of site</p>
+  <input type="text" name="depth" value={{divesite.depth}}>
+
+  {{!-- rubbish picked up from area? -option --}}
+
+  <p>Charter</p>
+  <input type="text" name="charter" value={{divesite.charter}}>
+
+
+
+  <input type="submit" value="Submit dive">
+</form>

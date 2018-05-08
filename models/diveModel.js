@@ -4,11 +4,10 @@ const Schema   = mongoose.Schema;
 
 const diveSchema = new Schema ({
   title: {type: String},
-  location: { 
-    longitude: String,
-    latitude: String},
+  longitude: {type:String},
+  latitude: {type: String},
   wreck: {type: String},
-  description: {type:String},
+  description: {type: String},
   depth: {type: Number},
   charter: {type: String}
 
