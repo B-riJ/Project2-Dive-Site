@@ -1,8 +1,8 @@
 const mongoose      = require('mongoose');
 const Schema        = mongoose.Schema;
 const passport      = require("passport");
-const User     = require('../models/userModel.js');
-const express      = require('express');
+const User          = require('../models/userModel.js');
+const express       = require('express');
 const flash         = require('connect-flash');
 
 // authorize the user

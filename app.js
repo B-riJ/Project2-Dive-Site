@@ -13,7 +13,8 @@ const path         = require('path');
 const passport      = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const flash         = require('connect-flash');
-const User     = require('./models/userModel.js');
+const User          = require('./models/userModel.js');
+const Dive          = require('./models/diveModel.js');
 const bcrypt        = require("bcrypt");
 
 
@@ -132,4 +133,9 @@ const passportRouter = require("./routes/user");
 app.use('/', passportRouter);
 // app.use('/', passportRouter);
 
+const diveSites = require("./routes/dive");
+app.use('/', diveSites);
+//---dive site create -----
+
+//create a signout post route 
 module.exports = app;

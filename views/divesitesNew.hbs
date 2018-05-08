@@ -1,0 +1,42 @@
+
+
+<h1>{{title}}</h1>
+<p>Your local dive site catalogue!{{title}}</p> 
+
+<!-- Simple form which will send a POST request -->
+<form action="/divesites/create" method="post">
+
+  <p>Dive Site Name</p>
+  <input type="text" name="site">
+
+  <p>Location - Longitude</p>
+  <input type="text" name="longitute">
+
+  <p>Location - Latitude</p>
+  <input type="text" name="latitude">
+
+  <p>Wreck Siting</p>
+  <input type="text" name="wreck">
+
+  <p>Description of site</p>
+  <input type="text" name="description">
+
+  <p>Charter</p>
+  <input type="text" name="charter">
+
+
+
+  <input type="submit" value="Submit dive">
+</form>
+
+  {{!-- const theSpot = req.body.site;
+  const theLocationLong = req.body.longitude;
+  const theLocationLat = req.body.latitude;
+  const theWreck = req.body.wreck; --}}
+  {{!-- const theDescription = req.body.description; --}}
+  {{!-- const theCharter = req.body.charter; --}}
+
+
+
+
+
