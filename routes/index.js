@@ -6,4 +6,12 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
+// // dive hompage route
+
+// router.get('/divesites', (req, res, next) => {
+//   res.render('/divesites');
+//   // response.sendFile(__dirname + '/divesites');
+// });
+
+
 module.exports = router;
