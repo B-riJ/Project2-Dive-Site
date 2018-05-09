@@ -1,4 +1,6 @@
-<p> Dive site name:{{divesite.title}}</p>
+{{!-- #if user --}}
+
+<p>Dive site name:{{divesite.title}}</p>
 <p>Longitude: {{divesite.longitude}}</p>
 <p>Latitude: {{divesite.latitude}}</p>
 <p>Wreck siting: {{divesite.wreck}}</p>
@@ -8,3 +10,6 @@
 
 
 <a href="/divesites/edit/{{divesite._id}}">edit</a>
+<form  action="/divesites/delete/{{this._id}}" method="post">
+  <button type="submit"> Delete </button>
+</form>

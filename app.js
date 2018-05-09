@@ -24,7 +24,8 @@ const bcrypt        = require("bcrypt");
 
 mongoose.Promise = Promise;
 mongoose
-.connect(process.env.MONGODB_URI, {useMongoClient: true})
+.connect(process.env.MONGODB_URI)
+  // removed from .connect {useMongoClient: true})
 // .connect('mongodb://localhost/divesites', {useMongoClient: true})
 .then(() => {
   console.log('Connected to Mongo!')

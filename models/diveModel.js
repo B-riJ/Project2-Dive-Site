@@ -6,12 +6,14 @@ const diveSchema = new Schema ({
   title: {type: String},
   longitude: {type:String},
   latitude: {type: String},
+  createdBy: {type: String},
   wreck: {type: String},
   description: {type: String},
   depth: {type: Number},
-  charter: {type: String}
+  charter: {type: String},
+  imgPath: {type: String}
 
-
+//added imgPath
   
 });
 

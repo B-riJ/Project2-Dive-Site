@@ -4,7 +4,12 @@ const DivesModel        = require('../models/diveModel')
 const express           = require('express');
 //create route for model 
 const router            = express.Router();
-
+const ensureLogin       = require('connect-ensure-login')
+const passport      = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const flash         = require('connect-flash');
+const bcrypt        = require("bcrypt");
+const bcryptSalt    = 10;
 // --defining Dive with diveModel ---
 const Dive = require('../models/diveModel.js');
 
@@ -17,29 +22,47 @@ router.get("/divesites/edit/:id", (req, res)=>{
   DivesModel.findById(req.params.id)
   .then((result) => { 
 // pass in variable to view ",divesite=key
+console.log("blah: ", result.title)
     res.render("divesites-edit",{divesite:result} );
   }) 
 
 
 })
+//-- end edit dive site --------------
 
-// router.post('/divesites/update/:id', function (req, res) {
-//   DivesModel.findByIdAndUpdate(req.params.id, {
-//     title: req.body.title,
-//     longitude: req.body.longitude,
-//     latitude: req.body.latitude,
-//     wreck: req.body.wreck,
-//     description: req.body.description,
-//     depth: req.body.depth,
-//     charter: req.body.charter,
-//   })
-//   .then(divesites => {
-//     // console.log(car);
-//   })
-//   .catch(theError => { console.log(theError) })
+router.post('/divesites/delete/:id', function(req, res){
+
+  DivesModel.findOneAndDelete({_id:req.params.id})
+  //changed from findByIdAndRemove
+  .then(divesites => {
+    // console.log(dive);
+    res.redirect('/divesites')
+  })
+  .catch(error => {
+    console.log(error);
+  })
+})
+
+// ----update edit dive site ----- 
+router.post('/divesites/update/:id', function (req, res) {
+  console.log("here")
+  DivesModel.findByIdAndUpdate(req.params.id, {
+    title: req.body.title,
+    longitude: req.body.longitude,
+    latitude: req.body.latitude,
+    wreck: req.body.wreck,
+    description: req.body.description,
+    depth: req.body.depth,
+    charter: req.body.charter,
+    createdBy: req.user.email
+  })
+  .then(divesites => {
+    // console.log(car);
+    res.redirect('/divesites')
+  })
+  .catch(theError => { console.log(theError) })
   
-//   res.redirect('/divesites')
-//   })
+  })
 
 //--------end update dive sites
 

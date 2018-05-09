@@ -3,32 +3,33 @@
 <p>Your local dive site catalogue!{{title}}</p> 
 
 <!-- Simple form which will send a POST request -->
-<form action="/divesites/edit" method="post">
+<form action="/divesites/update/{{divesite._id}}" method="post">
 
   <p>Dive Site Name</p>
-  <input type="text" name="site" value={{divesite.title}}>
+  <input type="text" name="title" value="{{divesite.title}}">
 
   <p>Location - Longitude</p>
-  <input type="text" name="longitude" value={{divesite.longitude}}>
+  <input type="text" name="longitude" value="{{divesite.longitude}}">
 
   <p>Location - Latitude</p>
-  <input type="text" name="latitude" value={{divesite.latitude}}>
+  <input type="text" name="latitude" value="{{divesite.latitude}}">
 
   <p>Wreck Siting</p>
-  <input type="text" name="wreck" value={{divesite.wreck}}>
+  <input type="text" name="wreck" value="{{divesite.wreck}}">
 
   <p>Description of site</p>
-  <input type="text" name="description" value={{divesite.description}}>
+  <input type="text" name="description" value="{{divesite.description}}">
 
    <p>Depth of site</p>
-  <input type="text" name="depth" value={{divesite.depth}}>
+  <input type="text" name="depth" value="{{divesite.depth}}">
 
   {{!-- rubbish picked up from area? -option --}}
 
   <p>Charter</p>
-  <input type="text" name="charter" value={{divesite.charter}}>
+  <input type="text" name="charter" value="{{divesite.charter}}">
 
-
-
-  <input type="submit" value="Submit dive">
+  <input type="submit" value="Submit Changes">
 </form>
+
+{{!-- Full text appearing error 
+values missing " " around handlebars. Now appears in prefilled field --}}
