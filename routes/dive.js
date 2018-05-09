@@ -12,7 +12,7 @@ router.get("/divesites/new", (req, res) => {
   res.render("divesitesNew");
 });
 
-
+//--Edit dive site data -------------
 router.get("/divesites/edit/:id", (req, res)=>{
   DivesModel.findById(req.params.id)
   .then((result) => { 
@@ -23,17 +23,37 @@ router.get("/divesites/edit/:id", (req, res)=>{
 
 })
 
+// router.post('/divesites/update/:id', function (req, res) {
+//   DivesModel.findByIdAndUpdate(req.params.id, {
+//     title: req.body.title,
+//     longitude: req.body.longitude,
+//     latitude: req.body.latitude,
+//     wreck: req.body.wreck,
+//     description: req.body.description,
+//     depth: req.body.depth,
+//     charter: req.body.charter,
+//   })
+//   .then(divesites => {
+//     // console.log(car);
+//   })
+//   .catch(theError => { console.log(theError) })
+  
+//   res.redirect('/divesites')
+//   })
 
+//--------end update dive sites
+
+//---------divesite page details
 router.get("/divesites/:id", (req,res) => {
   DivesModel.findById(req.params.id)
   .then((result) => { 
-// pass in variable to view ",divesite=key
+// pass in variable to view "divesites-detail, divesite=key
     res.render("divesites-detail",{divesite:result} );
   }) 
 
 
 })
-
+//------------end dive page details
 
 // -----------view DB sites-------
 
@@ -47,6 +67,7 @@ router.get('/divesites', function (req, res) {
   .catch(theError => { console.log(theError) })
 })
 
+// .then(divesites) match divesites=data.theList
 
 
 //---POST dive site form
@@ -65,6 +86,7 @@ router.post("/divesites/create", (req, res, next) => {
 
 //---dive site data to DB----
 //--Dive not defined err---
+
 const newDive = new Dive({
   title : theSpot,
   longitude : theLocationLong,
