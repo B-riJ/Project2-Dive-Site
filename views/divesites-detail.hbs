@@ -1,5 +1,6 @@
 {{!-- #if user --}}
 
+
 <p>Dive site name:{{divesite.title}}</p>
 <p>Longitude: {{divesite.longitude}}</p>
 <p>Latitude: {{divesite.latitude}}</p>
@@ -8,6 +9,11 @@
 <p>Depth: {{divesite.depth}}</p>
 <p>Charter: {{divesite.charter}}</p>
 
+{{#if divesite.imgPath}}
+
+<img src= "{{divesite.imgPath}}">
+
+{{/if}}
 
 <a href="/divesites/edit/{{divesite._id}}">edit</a>
 <form  action="/divesites/delete/{{divesite._id}}" method="post">

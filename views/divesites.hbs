@@ -12,6 +12,7 @@ router.get('/divesites', function (req, res) {
   .catch(theError => { console.log(theError) })
 }) --}}
 {{#each theList}}
+    <br>
 <a href="/divesites/{{this._id}}">{{this.title}}</a>
     
   

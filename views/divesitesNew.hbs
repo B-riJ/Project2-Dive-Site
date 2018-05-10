@@ -1,10 +1,10 @@
 
-
+{{!-- {{#if user}} --}}
 <h1>{{title}}</h1>
 <p>Your local dive site catalogue!{{title}}</p> 
 
 <!-- Simple form which will send a POST request -->
-<form action="/divesites/create" method="post">
+<form action="/divesites/create" method="post" enctype ="multipart/form-data">
 
   <p>Dive Site Name</p>
   <input type="text" name="site">
@@ -24,6 +24,10 @@
    <p>Depth of site</p>
   <input type="text" name="depth">
 
+  <p>Photo Upload</p>
+  <input type="file" name="photo">
+ {{!-- ^upload photo of dive site input --}}
+
   {{!-- rubbish picked up from area? -option --}}
 
   <p>Charter</p>
@@ -33,6 +37,7 @@
 
   <input type="submit" value="Submit dive">
 </form>
+    {{!-- {{/if}} --}}
 
   {{!-- const theSpot = req.body.site;
   const theLocationLong = req.body.longitude;

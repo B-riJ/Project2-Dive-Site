@@ -1,6 +1,7 @@
 <div>Private page</div>
+ <span><a href="/logout">Sign-out</a></span>
 {{#if user}}
-  <div>
-    <h1>Diver logged in!</h1>
+  <div class="welcome-user">
+    <h1>Hello, {{user.username}}!</h1>
     </div>
     {{/if}}

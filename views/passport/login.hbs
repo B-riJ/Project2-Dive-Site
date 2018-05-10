@@ -1,3 +1,5 @@
+<<div class="form-style">
+
 <form action="/login" method="POST">
   <div>
     <label for="username">Username:</label>
@@ -7,6 +9,11 @@
     <label for="password">Password:</label>
     <input type="password" name="password">
   </div>
+    {{!-- <div>
+    <label for="e-mail">email:</label>
+    <input type="text" name="email">
+  </div> --}}
+  {{!-- add email  --}}
   {{#if message}}
     <div class="error-message">{{ message }}</div>
   {{/if}}
@@ -14,4 +21,4 @@
     <input type="submit" value="Log In">
   </div>
 </form>
- 
+ </div>

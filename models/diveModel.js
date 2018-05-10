@@ -11,9 +11,10 @@ const diveSchema = new Schema ({
   description: {type: String},
   depth: {type: String},
   charter: {type: String},
-  // imgPath: {type: String}
+  imgPath: {type: String}
 
-//added imgPath
+
+//added imgPath for file upload
   
 });
 

@@ -11,6 +11,9 @@ const LocalStrategy = require("passport-local").Strategy;
 const flash         = require('connect-flash');
 const bcrypt        = require("bcrypt");
 const bcryptSalt    = 10;
+const multer        =require('multer');
+const cloudinary    =require('cloudinary');
+const uploadCloud    =require('../config/cloudinary');
 // --defining Dive with diveModel ---
 const Dives = require('../models/diveModel.js');
 
@@ -52,7 +55,7 @@ router.post('/divesites/update/:id', function (req, res) {
     title: req.body.title,
     longitude: req.body.longitude,
     latitude: req.body.latitude,
-    createdBy: req.user.email,
+    createdBy: req.user.username,
     wreck: req.body.wreck,
     description: req.body.description,
     depth: req.body.depth,
@@ -96,8 +99,8 @@ router.get('/divesites', function (req, res) {
 
 
 //---POST dive site form
-
-router.post("/divesites/create", (req, res, next) => {
+// create dive form name =photo
+router.post("/divesites/create", uploadCloud.single('photo'),(req, res, next) => {
   console.log(req.user)
   const theSpot = req.body.site;
   const theLocationLong = req.body.longitude;
@@ -122,9 +125,14 @@ const newDive = new Dives({
   wreck : theWreck,
   description : theDescription,
   depth: theDepth,
-  charter : theCharter
+  charter : theCharter,
+
   // match key value with Schema key name in dive model(!)
 })
+// cloudshare file upload- if() photo is loaded, value url added to key:imgPath
+if(req.file){
+newDive.imgPath = req.file.url
+}
 //---end dive site DB 
 newDive.save() 
 .then((dive) => {

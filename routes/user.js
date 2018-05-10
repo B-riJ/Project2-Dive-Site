@@ -17,6 +17,13 @@ router.get("/signup", (req, res) => {
   res.render("passport/signup");
 });
 
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/login");
+});
+
+
+
 router.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
