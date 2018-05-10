@@ -9,9 +9,9 @@ const diveSchema = new Schema ({
   createdBy: {type: String},
   wreck: {type: String},
   description: {type: String},
-  depth: {type: Number},
+  depth: {type: String},
   charter: {type: String},
-  imgPath: {type: String}
+  // imgPath: {type: String}
 
 //added imgPath
   

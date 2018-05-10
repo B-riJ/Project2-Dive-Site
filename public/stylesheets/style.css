@@ -6,11 +6,17 @@ body {
   background-size: cover;
   margin: 0 auto; }
 
+.background-map {
+  background-image: url("../images/South_Florida_1854.png"); }
+
 h1 {
   text-align: center; }
 
 a {
   color: #00B7FF; }
+
+p {
+  color: white; }
 
 .nav-bar {
   display: flex;
@@ -28,5 +34,9 @@ a {
 .nav-bar a:visited {
   color: #0077be;
   text-decoration: none; }
+
+.logo-time {
+  display: flex;
+  align-items: center; }
 
 /*# sourceMappingURL=style.css.map */

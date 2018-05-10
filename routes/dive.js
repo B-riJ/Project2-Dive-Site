@@ -1,6 +1,7 @@
 const mongoose          = require('mongoose');
 const Schema            = mongoose.Schema;
-const DivesModel        = require('../models/diveModel')
+// const DiveModel        = require('../models/diveModel')
+const User              = require('../models/userModel');
 const express           = require('express');
 //create route for model 
 const router            = express.Router();
@@ -11,7 +12,7 @@ const flash         = require('connect-flash');
 const bcrypt        = require("bcrypt");
 const bcryptSalt    = 10;
 // --defining Dive with diveModel ---
-const Dive = require('../models/diveModel.js');
+const Dives = require('../models/diveModel.js');
 
 router.get("/divesites/new", (req, res) => {
   res.render("divesitesNew");
@@ -19,7 +20,7 @@ router.get("/divesites/new", (req, res) => {
 
 //--Edit dive site data -------------
 router.get("/divesites/edit/:id", (req, res)=>{
-  DivesModel.findById(req.params.id)
+  Dives.findById(req.params.id)
   .then((result) => { 
 // pass in variable to view ",divesite=key
 console.log("blah: ", result.title)
@@ -30,10 +31,11 @@ console.log("blah: ", result.title)
 })
 //-- end edit dive site --------------
 
-router.post('/divesites/delete/:id', function(req, res){
+router.post('/divesites/delete/:id', (req, res, next) =>{
 
-  DivesModel.findOneAndDelete({_id:req.params.id})
+  Dives.findByIdAndRemove({_id:req.params.id})
   //changed from findByIdAndRemove
+  //findOneAndDelete
   .then(divesites => {
     // console.log(dive);
     res.redirect('/divesites')
@@ -46,15 +48,15 @@ router.post('/divesites/delete/:id', function(req, res){
 // ----update edit dive site ----- 
 router.post('/divesites/update/:id', function (req, res) {
   console.log("here")
-  DivesModel.findByIdAndUpdate(req.params.id, {
+  Dives.findByIdAndUpdate(req.params.id, {
     title: req.body.title,
     longitude: req.body.longitude,
     latitude: req.body.latitude,
+    createdBy: req.user.email,
     wreck: req.body.wreck,
     description: req.body.description,
     depth: req.body.depth,
     charter: req.body.charter,
-    createdBy: req.user.email
   })
   .then(divesites => {
     // console.log(car);
@@ -68,7 +70,7 @@ router.post('/divesites/update/:id', function (req, res) {
 
 //---------divesite page details
 router.get("/divesites/:id", (req,res) => {
-  DivesModel.findById(req.params.id)
+  Dives.findById(req.params.id)
   .then((result) => { 
 // pass in variable to view "divesites-detail, divesite=key
     res.render("divesites-detail",{divesite:result} );
@@ -81,7 +83,7 @@ router.get("/divesites/:id", (req,res) => {
 // -----------view DB sites-------
 
 router.get('/divesites', function (req, res) {
-  Dive.find()
+  Dives.find()
   .then(divesites => {
     let data = {};
     data.theList = divesites;
@@ -96,9 +98,11 @@ router.get('/divesites', function (req, res) {
 //---POST dive site form
 
 router.post("/divesites/create", (req, res, next) => {
+  console.log(req.user)
   const theSpot = req.body.site;
   const theLocationLong = req.body.longitude;
   const theLocationLat = req.body.latitude;
+  // const theUser   = req.user.username;
   const theWreck = req.body.wreck;
   const theDescription = req.body.description;
   const theDepth = req.body.depth;
@@ -110,24 +114,24 @@ router.post("/divesites/create", (req, res, next) => {
 //---dive site data to DB----
 //--Dive not defined err---
 
-const newDive = new Dive({
+const newDive = new Dives({
   title : theSpot,
   longitude : theLocationLong,
   latitude : theLocationLat,
+  creator: req.user.username,
   wreck : theWreck,
   description : theDescription,
   depth: theDepth,
   charter : theCharter
   // match key value with Schema key name in dive model(!)
 })
-
 //---end dive site DB 
 newDive.save() 
 .then((dive) => {
   //console.log(dive);
+  res.redirect('/')
 })
 .catch(theError => { console.log(theError)})
-res.redirect('/')
 })
 
 
