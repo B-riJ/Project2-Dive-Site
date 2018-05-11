@@ -29,6 +29,7 @@ p{
   width: 100%;
   margin: 0 auto;
   font-family: 'Teko', sans-serif;
+  opacity: 0.9;
   
 }
 
@@ -65,7 +66,24 @@ p{
     height: 100px;
     margin: auto;
     background-color: #f3f3f3;
+    
 }
+.welcome-msg {
+  padding: 0;
+  margin: 0;
+  background-color: grey;
+  opacity:0.7;
+  text-align: center;
+  color: white;
+  vertical-align:bottom;
+  position: relative;
+  top: -20px;
+  }
+  .welcome-user {
+    position :relative;
+    top: 150px;
+    color:white;
+    opacity:0.95;
 
-
+  }
 
